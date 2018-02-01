@@ -1,0 +1,146 @@
+.mainer {
+
+
+	  		   display: flex;
+
+	  	}
+		#reproductor {
+
+    width: 100%;
+    
+}
+		#medio {
+
+			width: 100%;
+			box-shadow: rgba(0, 0, 0, 0.47) 0px 0px 10px 6px;
+		}
+		#controls {
+
+			 
+	display: flex;
+    width: 100%;
+    padding: 1%;
+    position: absolute;
+    width: 60%;
+    top: 57.4%;
+    opacity: 0.8;
+    visibility: hidden;
+   
+    		
+		}
+
+		#controls:hover {
+
+			transition: opacity 1s ease 1s;
+			opacity: 1;
+
+		}
+		div > img {
+
+			  margin-left: 2%;
+			   width: 3%;
+			   height: 10%;
+ 
+		}
+			#spleen_footer {
+
+					padding-left: 70%;
+					padding-top: 0.4%;
+
+			}
+			section[class="container"] {
+
+
+				   margin: 0;
+				   width: 70%;
+				   padding: 5%;
+				   margin-top: 4.4%;
+			}
+			#span_followus {
+
+
+				   padding-top: 0.4%;
+			}
+			#progress-bar {
+
+
+
+    		width: 0%;
+    		max-width: 65%;
+		    height: 10%;
+    		background: #dc3545;
+    		position: absolute;
+    		left: 15%;
+    		top: 47%;
+    		z-index: 5;
+
+    }
+    #path {
+
+
+    	     width: 65%;
+		    height: 10%;
+    		background: #fff;
+    		position: absolute;
+    		left: 15%;
+    		top: 47%;
+    }
+    #tiempo {
+
+
+    	  position: absolute;
+    	  left: 85%;
+    	  top: 30%;
+    }
+    #other-videos {
+
+
+    	  width: 30%;
+    	  padding-top: 5%;
+    	  margin-top: 4.4%;
+    	  background: #dc3545;
+
+    }
+
+		 
+		@media screen and (max-width: 360px) {
+
+			#spleen_footer {
+
+					padding-left: 40%;
+					display: none;
+
+			}
+			section[class="container"] {
+
+
+				   margin-top: 15%;
+
+			}		
+
+			div > img {
+
+			  
+			  width: 10%;
+   			  height: 10%;
+    		  padding-top: 3%;
+    		  padding-bottom: 3%;
+    		  padding-left: 2%;
+
+		}	
+			#span_followus {
+
+
+				   padding-top: 3.4%;
+			}
+			.mainer {
+
+				 padding-bottom: 11%;
+			}
+			#other-videos {
+
+
+				   margin-top: 15.4%;
+			}
+
+		}

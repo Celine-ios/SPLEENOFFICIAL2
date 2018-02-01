@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Pelicula-Spleen
+        </title>
+        <link href="bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="player_style.css" rel="stylesheet" type="text/css">
+                <link href="/dashboard/Spleen/spleen.png" rel="shortcut icon">
+                    <meta charset="utf-8">
+                        <meta content="width=device-width, initial-scale=1,shrink-to-fit=no" name="viewport">
+                        </meta>
+                    </meta>
+                </link>
+            </link>
+        </link>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark navbar-expand-md bg-dark fixed-top">
+            <a class="navbar-brand" href="#">
+                Spleen
+            </a>
+            <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav">
+                    <a class="nav-link" data-toggle="modal" href="#myModal" style="color: #007bff;">
+                        Buscar
+                        <span class="sr-only">
+                            (current)
+                        </span>
+                    </a>
+                    <a class="nav-item nav-link" href="#">
+                        Home
+                        <span class="sr-only">
+                            (current)
+                        </span>
+                    </a>
+                    <a class="nav-item nav-link" href="#">
+                        Salir
+                        <span class="sr-only">
+                            (current)
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <a class="nav-item text-right" href="/dashboard/Spleen/Dashboard/index.html" id="gain_total" style="padding-right: 4%;text-decoration: none;">
+            </a>
+        </nav>
+        <div class="bd-example bd-example-modal">
+            <div class="modal" id="myModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header" style="border-bottom: none;">
+                            <h5 class="modal-title text-white">
+                                !Busca tu Pelicula!
+                            </h5>
+                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-inline">
+                                <input aria-label="Search" autofocus="" class="form-control mr-sm-2" placeholder="Search" style="width: 80%;" type="search">
+                                </input>
+                            </form>
+                        </div>
+                        <div class="modal-footer" style="border-top: none;">
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
+                                Cerrar
+                            </button>
+                            <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mainer">
+            <section class="container">
+                <div id="reproductor">
+                    <video id="medio">
+                        <source src="lol.mp4">
+                        </source>
+                    </video>
+                    <nav class="bg-dark" id="controls">
+                        <img id="button" src="play-button-1.svg" style="width: 5%;height: 5%;">
+                            <div id="path">
+                            </div>
+                            <div id="progress-bar">
+                            </div>
+                            <p class="text-right text-white" id="tiempo">
+                            </p>
+                        </img>
+                    </nav>
+                </div>
+                <aside>
+                    <h2 class="text-left" style="padding-top: 4%;">
+                        Todo el Mundo deberia saber Programar
+                    </h2>
+                    <p class="text-left" style="color: #dc3545;font-weight: bold;">
+                        Informacion
+                    </p>
+                    <p class="text-left">
+                        <span style="color: #dc3545;font-weight: bold;">
+                            Director:
+                        </span>
+                        Lesley Chilcott
+                    </p>
+                    <p class="text-left">
+                        <span style="color: #dc3545;font-weight: bold;">
+                            Año de Estreno:
+                        </span>
+                        2013
+                    </p>
+                    <p class="text-left">
+                        <span style="color: #dc3545;font-weight: bold;">
+                            Genero:
+                        </span>
+                        Documental
+                    </p>
+                </aside>
+            </section>
+          
+        </div>
+        <footer class="footer bg-dark">
+            <div class="container" style="padding-bottom: 1%;padding-top: 1%;display: flex;">
+                <span class="text-left text-white" id="span_followus">
+                    Siguenos
+                </span>
+                <img src="036-facebook.svg">
+                    <img src="008-twitter.svg">
+                        <img src="029-instagram.svg">
+                            <p class="text-right text-white" id="spleen_footer">
+                                Spleen 2018
+                            </p>
+                        </img>
+                    </img>
+                </img>
+            </div>
+        </footer>
+        <script src="jquery-3.2.1.min.js" type="text/javascript">
+        </script>
+        <script src="popper.min.js" type="text/javascript">
+        </script>
+        <script src="tooltip.js" type="text/javascript">
+        </script>
+        <script src="popover.js" type="text/javascript">
+        </script>
+        <script src="modal.js" type="text/javascript">
+        </script>
+        <script src="util.js" type="text/javascript">
+        </script>
+        <script src="collapse.js" type="text/javascript">
+        </script>
+        <script src="reproductor.js" type="text/javascript">
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+
+              $.get('put_video.php',function(video_name) {
+
+
+
+                        $('source').attr({
+
+
+                              src: video_name+''
+                        });
+
+              });
+          
+          
+          $.get('packet_verification.php',function(result) {
+             
+
+                    $('#gain_total').text(result+"$");
+                        
+              
+          });
+
+
+      });
+        </script>
+    </body>
+</html>
