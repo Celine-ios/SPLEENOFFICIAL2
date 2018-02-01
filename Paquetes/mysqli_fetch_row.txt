@@ -1,0 +1,130 @@
+mysqli_result::fetch_row
+
+mysqli_fetch_row
+
+(PHP 5, PHP 7)
+mysqli_result::fetch_row -- mysqli_fetch_row — Obtener una fila de resultados como un array enumerado
+
+Descripción ¶
+
+Estilo orientado a objetos
+
+mixed mysqli_result::fetch_row ( void )
+Estilo por procedimientos
+
+mixed mysqli_fetch_row ( mysqli_result $result )
+Obtiene una fila de datos del conjunto de resultados y la devuelve como un array enumerado, donde cada columna es almacenada en un índice del array comenzando por 0 (cero). Cada llamada subsiguiente a esta función devolverá la siguiente fila del conjunto de resultados, o NULL si no hay más filas.
+
+Parámetros ¶
+
+result
+Sólo estilo por procedimientos: Un conjunto de identificadores de resultados devuelto por mysqli_query(), mysqli_store_result() o mysqli_use_result().
+
+Valores devueltos ¶
+
+mysqli_fetch_row() devuelve un array de cadenas que se corresponde con la fila obtenida o NULL si no hay más filas en el conjunto de resultados.
+
+Nota: Esta función define campos NULOS al valor NULL de PHP.
+Ejemplos ¶
+
+Ejemplo #1 Estilo orientado a objetos
+
+<?php
+$mysqli = new mysqli("localhost", "mi_usuario", "mi_contraseña", "world");
+
+/* comprobar la conexión */
+if (mysqli_connect_errno()) {
+    printf("Falló la conexión: %s\n", mysqli_connect_error());
+    exit();
+}
+
+$consulta = "SELECT Name, CountryCode FROM City ORDER by ID DESC LIMIT 50,5";
+
+if ($resultado = $mysqli->query($consulta)) {
+
+    /* obtener el array de objetos */
+    while ($fila = $resultado->fetch_row()) {
+        printf ("%s (%s)\n", $fila[0], $fila[1]);
+    }
+
+    /* liberar el conjunto de resultados */
+    $resultado->close();
+}
+
+/* cerrar la conexión */
+$mysqli->close();
+?>
+Ejemplo #2 Estilo por procedimientos
+
+<?php
+$enlace = mysqli_connect("localhost", "mi_usuario", "mi_contraseña", "world");
+
+/* comprobar la conexión */
+if (mysqli_connect_errno()) {
+    printf("Falló la conexión: %s\n", mysqli_connect_error());
+    exit();
+}
+
+$consulta = "SELECT Name, CountryCode FROM City ORDER by ID DESC LIMIT 50,5";
+
+if ($resultado = mysqli_query($enlace, $consulta)) {
+
+    /* obtener el array asociativo */
+    while ($fila = mysqli_fetch_row($resultado)) {
+        printf ("%s (%s)\n", $fila[0], $fila[1]);
+    }
+
+    /* liberar el conjunto de resultados */
+    mysqli_free_result($resultado);
+}
+
+/* cerrar la conexión */
+mysqli_close($enlace);
+?>
+El resultado de los ejemplos sería:
+
+Pueblo (USA)
+Arvada (USA)
+Cape Coral (USA)
+Green Bay (USA)
+Santa Clara (USA)
+Ver también ¶
+
+mysqli_fetch_array() - Obtiene una fila de resultados como un array asociativo, numérico, o ambos
+mysqli_fetch_assoc() - Obtener una fila de resultado como un array asociativo
+mysqli_fetch_object() - Devuelve la fila actual de un conjunto de resultados como un objeto
+mysqli_query() - Realiza una consulta a la base de datos
+mysqli_data_seek() - Ajustar el puntero de resultado a una fila arbitraria del resultado
+add a note add a note
+User Contributed Notes 4 notes
+
+up
+down
+17 Stephen ¶10 years ago
+It's worth noting that the MySQLi functions (and, I presume, the MySQL functions) fetch a string regardless of the MySQL data type. E.g. if you fetch a row with an integer column, the corresponding value for that column and row will still be stored as a string in the array returned by mysql_fetch_row.
+up
+down
+4 sainthyoga2003 at gmail dot com ¶3 years ago
+Note that mysqli_fetch() is deprecated but still is in PHP function list. mysqli_fetch_row() is nowadays mysql procedural style used, but is not listed in PHP functions.
+up
+down
+4 maillist at pnpitalia.it ¶14 years ago
+from "README.PHP4-TO-PHP5-THIN-CHANGES"
+
+4. Be careful when porting from ext/mysql to ext/mysqli. The following
+   functions return NULL when no more data is available in the result set
+   (ext/mysql's functions return FALSE).
+
+    - mysqli_fetch_row()
+    - mysqli_fetch_array()
+    - mysqli_fetch_assoc()
+up
+down
+3 evangun2001 at yahoo dot fr ¶10 years ago
+Remember that fetch() and fetch_row() are two different things, and differ in the way to use them.
+
+- fetch() is used on a statement (like an executed prepared statement) and needs to be used in association with bind_result().
+
+- fetch_row() is used on a result (like the result of query()).
+
+As a consequence, if you want to use to use fetch_row() with an executed prepared statement, first you'll have to get the result out of this statement with mysqli_store_result() or mysqli_use_result().

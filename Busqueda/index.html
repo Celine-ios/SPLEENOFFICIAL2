@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Busqueda-Spleen
+        </title>
+        <link href="bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="/dashboard/Spleen/spleen.png" rel="icon">
+                <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+                </meta>
+            </link>
+        </link>
+    </head>
+    <body style="background: #dc3545;">
+        <style type="text/css">
+            table {
+
+
+        visibility: visible;
+
+    }
+    section {
+
+         padding-top: 5%;
+         visibility: visible;
+    }
+    footer {
+
+
+         visibility: hidden;
+    }
+    #see_more {
+
+        visibility: hidden;
+    }
+        </style>
+        <nav class="navbar navbar-dark navbar-expand-md bg-dark fixed-top">
+            <a class="navbar-brand" href="#">
+                Spleen
+            </a>
+            <a class="nav-link" data-toggle="modal" href="#myModal">
+                Buscar
+                <span class="sr-only">
+                    (current)
+                </span>
+            </a>
+            <a class="nav-link" href="/dashboard/Spleen/Dashboard/index.html">
+                Panel
+                <span class="sr-only">
+                    (current)
+                </span>
+            </a>
+        </nav>
+        <div class="bd-example bd-example-modal">
+            <div class="modal" id="myModal" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header" style="border-bottom: none;">
+                            <h5 class="modal-title text-white">
+                                !Busca tu Pelicula!
+                            </h5>
+                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-inline">
+                                <input aria-label="Search" autofocus="" class="form-control mr-sm-2" placeholder="Search" style="width: 80%;" type="search">
+                                </input>
+                            </form>
+                        </div>
+                        <div class="modal-footer" style="border-top: none;">
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">
+                                Cerrar
+                            </button>
+                          <!--boton de busqueda-->  <button class="btn btn-primary" data-dismiss="modal" type="button">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <main class="container">
+            <section>
+                <h1 class="text-white text-center">
+                    ¡Busca tus Peliculas Favoritas!
+                    <br>
+                        <small>
+                            Disfruta de las mejores peliculas desde la comodidad de tu
+    hogar y mejor aun,deja que te pagemos por verlas
+                        </small>
+                    </br>
+                </h1>
+            </section>
+        </main>
+        <a href="#" style="text-decoration-color: white;">
+            <p class="text-center text-white" id="see_more">
+                Mas Resultados
+            </p>
+        </a>
+        <footer class="bd-footer text-muted bg-dark">
+            <div class="container-fluid p-3 p-md-5">
+                <p class="text-center">
+                    Spleen 2017
+                </p>
+                <p class="text-center" id="hide-follow-us">
+                    Siguenos
+                </p>
+                <a href="#" style="padding-left: 40%;">
+                    <img src="036-facebook.svg" style="width: 5%;padding-top: 1%;">
+                    </img>
+                </a>
+                <a href="#" style="padding-left: 2%;">
+                    <img src="008-twitter.svg" style="width: 5%;padding-top: 1%;">
+                    </img>
+                </a>
+                <a href="#" style="padding-left: 2%;">
+                    <img src="029-instagram.svg" style="width: 5%;padding-top: 1%;">
+                    </img>
+                </a>
+                <p class="text-center" style="padding-top: 3%;">
+                    All Rights Reserved
+                </p>
+            </div>
+        </footer>
+        <style type="text/css">
+            .form-inline {
+
+
+             visibility: visible;
+       }
+       .container {
+
+            padding-top: 4%;
+       }
+       @media screen and (max-width: 360px) {
+
+
+            .container {
+
+                 padding-top: 15%;
+            }
+       }
+        </style>
+        <script src="jquery-3.2.1.min.js" type="text/javascript">
+        </script>
+        <script src="popper.min.js" type="text/javascript">
+        </script>
+        <script src="tooltip.js" type="text/javascript">
+        </script>
+        <script src="popover.js" type="text/javascript">
+        </script>
+        <script src="modal.js" type="text/javascript">
+        </script>
+        <script src="util.js" type="text/javascript">
+        </script>
+        <script src="collapse.js" type="text/javascript">
+        </script>
+        <script language="javascript" type="text/javascript">
+            $(document).ready( function() {
+        
+        $('.btn-primary').click(function(event) {
+
+
+  
+  
+//ajax
+
+     
+    $('main').load('table_result.html',function() {
+
+
+     var seekpar = $('.form-control').val();
+
+        
+        var url = 'q='+seekpar; //este es el parametro de busqueda
+
+                alert(url);
+
+            
+
+            $.get('searcher_titulo.php',url,function(titulo) {
+
+
+                         $('#title').text(titulo);
+                         
+
+                         
+                       
+                       
+
+
+              });
+
+             $.get('searcher_director.php',url,function(director) {
+
+
+                         $('#director').text(director);
+                         
+
+                         
+                       
+                       
+
+
+              });
+
+
+             $.get('searcher_link.php',url,function(link) {
+
+
+                         
+
+                   $('#title').mouseover(function() {
+
+
+
+
+
+                            var complete_link = '/dashboard/Spleen/Reproductor/index.html';
+
+                             $('a').attr({
+
+                              href: complete_link
+
+                         });   
+
+                   }
+
+                                          
+                              );
+                         
+                       
+                       
+
+
+              });
+
+
+
+
+                
+         });
+
+
+
+          $('table').css('visibility','visible');
+          $('section').css('visibility','hidden');
+          $('section').css('padding-top','0%');
+          $('footer').css('visibility','visible');
+          $('#see_more').css('visibility','visible');
+         
+        });
+
+      
+
+
+        
+
+        });
+        </script>
+    </body>
+</html>
