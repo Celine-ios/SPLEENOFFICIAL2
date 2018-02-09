@@ -1,0 +1,2 @@
+*crear un script unico (php) para resultados de busqueda
+*reconfigurar el script reports.php en el directorio /Dashboard 
